@@ -69,6 +69,12 @@ public enum ApplicationUserRole {
  and i was able to use Sets.newHashSet() because of guava
  and lastly i edit the role to become.roles(ApplicationUserRole.ADMIN.name())
 and name is a ready method to to get literally te name .
+--------------------------------------------------------------------------------------------
+and now to make only one role access a certain page:
+1. we do after permitall .requestMatchers() and u put the path to that certain page and then
+.hasRole(and ....)and now u successfuly were able to make a spesific role log in to url .
+--------------------------------------------------------------------------------------------------
+permission based authentication:
 
 
 

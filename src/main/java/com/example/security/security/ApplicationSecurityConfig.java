@@ -29,6 +29,7 @@ public class ApplicationSecurityConfig {
                .authorizeRequests()
                .requestMatchers("/*","index","/css/*")
                .permitAll()
+               .requestMatchers("/api/**").hasRole(ApplicationUserRole.STUDENT.name())
                .anyRequest()
                .authenticated()
                .and()
