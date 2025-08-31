@@ -42,12 +42,12 @@ public class ApplicationSecurityConfig {
         UserDetails ruru = User.builder()
                 .username("ruaa-diab")
                 .password(this.passwordEncoder.encode("12345"))
-                .roles("STUDENT")
+                .roles(ApplicationUserRole.STUDENT.name())
                 .build();
         UserDetails rose= User.builder()
                 .username("rose")
                 .password(this.passwordEncoder.encode("12340"))
-                .roles("ADMIN")
+                .roles(ApplicationUserRole.ADMIN.name())
                 .build();
         return new InMemoryUserDetailsManager(ruru,rose);
     }

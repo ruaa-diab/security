@@ -48,6 +48,30 @@ public PasswordEncoder passwordEncoder(){
 
 } and then u put it besid the password and spring security wont let u proceed without doing so.
 ----------------------------------------------------------------------------------------------------
+roles and admissions:
+you can assign more than one role to user.
+and because of that you gotta do 2 enums one for the roles D ONE FOR THE PERMISSIONS AND THEN customize to everyRole.
+and then we add this dependency:<dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>33.4.8-jre</version>
+</dependency>     :
+Guava is not mandatory, but it gives you ready-to-use tools that make your code cleaner, safer, and shorter.
+
+Many Spring Boot projects use it for collection handling, string utilities, caching, and precondition checks.
+
+now i use those permissons as a parmeter for the roles like
+public enum ApplicationUserRole {
+    STUDENT(Sets.newHashSet()),
+    ADMIN(Sets.newHashSet(ApplicationUserPermission.COURSE_READ,ApplicationUserPermission.COURSE_WRITE,ApplicationUserPermission.STUDENT_READ,ApplicationUserPermission.STUDENT_WRITE));
+
+    private final Set<ApplicationUserPermission> permissions;
+ and i was able to use Sets.newHashSet() because of guava
+ and lastly i edit the role to become.roles(ApplicationUserRole.ADMIN.name())
+and name is a ready method to to get literally te name .
+
+
+
 
 
 
