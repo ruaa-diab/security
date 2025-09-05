@@ -75,9 +75,26 @@ and now to make only one role access a certain page:
 .hasRole(and ....)and now u successfuly were able to make a spesific role log in to url .
 --------------------------------------------------------------------------------------------------
 permission based authentication:
+Management api:
+
+By default: after login you can do everything.
+
+In your case: CSRF protection made it look like only GET works.
 
 
 
+GET requests are not free for everyone; Spring Security locks them down unless you allow anonymous access.
+
+This line is not about logging in :
+.requestMatchers(HttpMethod.GET,"/management/api/**").hasAnyRole(ApplicationUserRole.ADMIN.name(),
+— it’s about which roles can access after logging in.
+
+If you wanted GET to be accessible by anyone (even without login), you’d need:
+
+.requestMatchers(HttpMethod.GET, "/management/api/**").permitAll()
+
+
+But usually for management APIs, you don’t want GET to be open — only certain roles can read data.
 
 
 
